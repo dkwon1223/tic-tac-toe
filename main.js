@@ -126,3 +126,13 @@ function checkDraw() {
         return true;
     }
 }
+
+// A function that resets the game board’s data to begin a new game
+
+function resetGame() {
+    gameBoard = [
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
+    ];
+}
