@@ -24,3 +24,10 @@ function createPlayer(id, token) {
         wins: 0
     };
 }
+
+// A function called increaseWins - increases the count of a player’s wins (should work for either player)
+
+function increaseWins(player) {
+    player.wins += 1;
+    return player;
+}
