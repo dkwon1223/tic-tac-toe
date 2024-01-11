@@ -136,3 +136,14 @@ function resetGame() {
         0, 0, 0
     ];
 }
+
+playTurn(0, 1);
+playTurn(0, 2);
+playTurn(4, 2);
+playTurn(2, 1);
+playTurn(1, 2);
+playTurn(3, 1);
+playTurn(6, 2);
+playTurn(7, 1);
+playTurn(8, 2);
+playTurn(5, 1);
