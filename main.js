@@ -75,3 +75,45 @@ function trackTurn() {
         console.log("Player 2's Turn");
     }
 }
+
+// A function that checks the game board data for win conditions
+
+function checkWin() {
+    let result = "";
+    if(gameBoard[0] === 1 && gameBoard[1] === 1 && gameBoard[2] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[3] === 1 && gameBoard[4] === 1 && gameBoard[5] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[6] === 1 && gameBoard[7] === 1 && gameBoard[8] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[0] === 1 && gameBoard[3] === 1 && gameBoard[6] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[1] === 1 && gameBoard[4] === 1 && gameBoard[7] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[2] === 1 && gameBoard[5] === 1 && gameBoard[8] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[0] === 1 && gameBoard[4] === 1 && gameBoard[8] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[6] === 1 && gameBoard[4] === 1 && gameBoard[2] === 1) {
+        result = "Player 1 Wins!"
+    } else if(gameBoard[0] === 2 && gameBoard[1] === 2 && gameBoard[2] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[3] === 2 && gameBoard[4] === 2 && gameBoard[5] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[6] === 2 && gameBoard[7] === 2 && gameBoard[8] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[0] === 2 && gameBoard[3] === 2 && gameBoard[6] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[1] === 2 && gameBoard[4] === 2 && gameBoard[7] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[2] === 2 && gameBoard[5] === 2 && gameBoard[8] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[0] === 2 && gameBoard[4] === 2 && gameBoard[8] === 2) {
+        result = "Player 2 Wins!"
+    } else if(gameBoard[6] === 2 && gameBoard[4] === 2 && gameBoard[2] === 2) {
+        result = "Player 2 Wins!"
+    } else {
+        result = "No winner yet";
+    }
+    console.log(result);
+}
