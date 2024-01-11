@@ -65,3 +65,13 @@ function playTurn(index, playerNum) {
         console.log("\n");
     }
 }
+
+// A function that keeps track of which player’s turn it currently is
+
+function trackTurn() {
+    if(turnCounter === 0 || turnCounter % 2 === 0) {
+        console.log("Player 1's Turn");
+    } else {
+        console.log("Player 2's Turn");
+    }
+}
