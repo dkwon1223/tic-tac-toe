@@ -117,3 +117,12 @@ function checkWin() {
     }
     console.log(result);
 }
+
+// A function that detects when a game is a draw (no one has won)
+
+function checkDraw() {
+    if(!gameBoard.includes(0) && checkWin() !== "Player 1 Wins!" || !gameBoard.includes(0) && checkWin() !== "Player 2 Wins!") {
+        console.log("Draw");
+        return true;
+    }
+}
