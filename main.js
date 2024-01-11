@@ -31,3 +31,15 @@ function increaseWins(player) {
     player.wins += 1;
     return player;
 }
+
+// A function that keeps track of the data for the game board
+
+function displayGameStats() {
+    return {
+        playerOneID: null,
+        playerTwoID: null,
+        playerOneWins: null,
+        playerTwoWins: null,
+        currentTurn: null
+    };
+}
