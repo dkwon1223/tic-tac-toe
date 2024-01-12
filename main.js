@@ -1,13 +1,25 @@
 // GAME LOGIC
 
 // GLOBAL VARIABLE(S)/DATA MODEL
+let turnCounter = 0;
+
 let gameBoard = [
-    0, 0, 0,
-    0, 0, 0,
-    0, 0, 0
+    null, null, null,
+    null, null, null,
+    null, null, null
 ];
 
-let turnCounter = 0;
+const winCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
 
 // FUNCTIONS
 // DOM 
@@ -34,96 +46,57 @@ function increaseWins(player) {
 
 // A function that keeps track of the data for the game board
 
-function displayGameStats() {
-    return {
-        playerOneID: null,
-        playerTwoID: null,
-        playerOneWins: null,
-        playerTwoWins: null,
-        currentTurn: null
-    };
+function renderGame() {
+    
 }
 
 // A function for playing a turn
-function playTurn(index, playerNum) {
-    if(gameBoard[index] === 0) {
+function playTurn(index, playerObject) {
+    if(gameBoard[index] === null) {
         turnCounter++;
-        gameBoard[index] = playerNum;
-        console.log(gameBoard.slice(0,3));
+        gameBoard[index] = playerObject.token;   
+        console.log("Track Turn:",trackTurn());
+        console.log(gameBoard.slice(0,3));   
         console.log(gameBoard.slice(3,6));
         console.log(gameBoard.slice(6));
-        trackTurn();
-        checkWin();
-        checkDraw();
+        console.log("Check Win:",checkWin());
+        console.log("Check Draw:", checkDraw());
         console.log("\n");
     } else {
-        console.log(gameBoard.slice(0,3));
-        console.log(gameBoard.slice(3,6));
-        console.log(gameBoard.slice(6));
-        console.log("\nCannot play here.");
-        trackTurn();
-        console.log("\n");
+        console.log("Cannot play here");
     }
 }
 
 // A function that keeps track of which player’s turn it currently is
-
-function trackTurn() {
+function trackTurn() {  
     if(turnCounter === 0 || turnCounter % 2 === 0) {
-        console.log("Player 1's Turn");
+        return "Player 1's Turn";
     } else {
-        console.log("Player 2's Turn");
+        return "Player 2's Turn";
     }
 }
 
 // A function that checks the game board data for win conditions
 
 function checkWin() {
-    let result = "";
-    if(gameBoard[0] === 1 && gameBoard[1] === 1 && gameBoard[2] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[3] === 1 && gameBoard[4] === 1 && gameBoard[5] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[6] === 1 && gameBoard[7] === 1 && gameBoard[8] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[0] === 1 && gameBoard[3] === 1 && gameBoard[6] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[1] === 1 && gameBoard[4] === 1 && gameBoard[7] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[2] === 1 && gameBoard[5] === 1 && gameBoard[8] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[0] === 1 && gameBoard[4] === 1 && gameBoard[8] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[6] === 1 && gameBoard[4] === 1 && gameBoard[2] === 1) {
-        result = "Player 1 Wins!"
-    } else if(gameBoard[0] === 2 && gameBoard[1] === 2 && gameBoard[2] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[3] === 2 && gameBoard[4] === 2 && gameBoard[5] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[6] === 2 && gameBoard[7] === 2 && gameBoard[8] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[0] === 2 && gameBoard[3] === 2 && gameBoard[6] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[1] === 2 && gameBoard[4] === 2 && gameBoard[7] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[2] === 2 && gameBoard[5] === 2 && gameBoard[8] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[0] === 2 && gameBoard[4] === 2 && gameBoard[8] === 2) {
-        result = "Player 2 Wins!"
-    } else if(gameBoard[6] === 2 && gameBoard[4] === 2 && gameBoard[2] === 2) {
-        result = "Player 2 Wins!"
-    } else {
-        result = "No winner yet";
+    for(const condition of winCombos) {
+        let [x, y, z] = condition
+        if(gameBoard[x] && (gameBoard[x] === gameBoard[y] && gameBoard[x] === gameBoard[z])) {
+            resetGame();
+            return [x, y, z];
+        }
     }
-    console.log(result);
+    return false;
 }
 
 // A function that detects when a game is a draw (no one has won)
 
 function checkDraw() {
-    if(!gameBoard.includes(0) && checkWin() !== "Player 1 Wins!" || !gameBoard.includes(0) && checkWin() !== "Player 2 Wins!") {
-        console.log("Draw");
-        return true;
+    if(!gameBoard.includes(null) && !checkWin()) {
+        resetGame();
+        return "Draw";
+    } else {
+        return false;
     }
 }
 
@@ -131,19 +104,29 @@ function checkDraw() {
 
 function resetGame() {
     gameBoard = [
-        0, 0, 0,
-        0, 0, 0,
-        0, 0, 0
+        null, null, null,
+        null, null, null,
+        null, null, null
     ];
 }
 
-playTurn(0, 1);
-playTurn(0, 2);
-playTurn(4, 2);
-playTurn(2, 1);
-playTurn(1, 2);
-playTurn(3, 1);
-playTurn(6, 2);
-playTurn(7, 1);
-playTurn(8, 2);
-playTurn(5, 1);
+let playerOne = createPlayer("P1", "⭐️");
+let playerTwo = createPlayer("P2", "🩷");
+
+console.log("Player One:",playerOne);
+console.log("Player Two:",playerTwo);
+console.log("\n");
+
+playTurn(0, playerOne);
+playTurn(1, playerTwo);
+playTurn(3, playerOne);
+playTurn(6, playerTwo);
+playTurn(4, playerOne);
+playTurn(5, playerTwo);
+playTurn(7, playerOne);
+playTurn(8, playerTwo);
+playTurn(2, playerOne);
+
+
+
+
