@@ -1,0 +1,62 @@
+section, figure, h2, h1, .game-board, div{
+    border: solid 1px black;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.player-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.player-icon {
+    width: 40%;
+    height: 12%;
+}
+
+.player-token {
+    width: 100%;
+    height: 100%;
+}
+
+.player-wins {
+    width: 60%;
+    height: 10%;
+}
+
+.turn-status {
+    height: 10%;
+    width: 60%;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 60%;
+    width: 70%;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
