@@ -9,10 +9,25 @@
 <body>
     <section class="main">
         <section class="player-area">
-            <figure class="player-icon">
-                <h2 class="player-token"></h2>
-            </figure>
-            <h1 class="player-wins"></h1>
+            <section class="player-info hidden">
+                <figure class="player-icon">
+                    <h2 class="player-token"></h2>
+                </figure>
+                <h1 class="player-wins"></h1>
+            </section>
+            <section class="player-input">
+                <h4>Player One</h4>
+                <h4>Choose Icon</h4>
+                <button class="emoji-button"></button>
+                <div class="emoji-selector hidden" id="p1-emoji-selector">
+                    <div class="input-container">
+                        <input id="emoji-search" type="text" placeholder="Search...">
+                    </div>
+                    <ul class="emoji-list">
+                        
+                    </ul>
+                </div>
+            </section>
         </section>
         <section class="game-area">
             <h1 class="turn-status"></h1>
@@ -29,10 +44,12 @@
             </container>
         </section>
         <section class="player-area">
-            <figure class="player-icon">
-                <h2 class="player-token"></h2>
-            </figure>
-            <h1 class="player-wins"></h1>
+            <section class="player-info hidden">
+                <figure class="player-icon">
+                    <h2 class="player-token"></h2>
+                </figure>
+                <h1 class="player-wins"></h1>
+            </section>
         </section>
     </section>
     <script type="text/javascript" src="main.js"></script>

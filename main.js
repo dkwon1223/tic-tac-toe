@@ -22,7 +22,6 @@ const winCombos = [
 
 
 // FUNCTIONS
-// DOM 
 
 /* 
 A function that creates the objects that store each players’ information
@@ -47,7 +46,7 @@ function increaseWins(player) {
 // A function that keeps track of the data for the game board
 
 function renderGame() {
-    
+
 }
 
 // A function for playing a turn
@@ -126,6 +125,30 @@ playTurn(5, playerTwo);
 playTurn(7, playerOne);
 playTurn(8, playerTwo);
 playTurn(2, playerOne);
+
+// DOM 
+
+let chooseIconButton = document.querySelector(".emoji-button");
+let emojiSelector = document.querySelector("#p1-emoji-selector");
+let emojiList = document.querySelector(".emoji-list");
+
+chooseIconButton.addEventListener("click", () => {
+    emojiSelector.classList.toggle("hidden");
+});
+
+fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
+    .then(response => response.json())
+    .then(data => loadEmoji(data))
+
+function loadEmoji(data) {
+    data.forEach(emoji => {
+        let listItem = document.createElement("li");
+        listItem.setAttribute("emoji-name", emoji.slug);
+        listItem.textContent = emoji.character;
+        emojiList.appendChild(listItem);
+    })
+}
+
 
 
 
