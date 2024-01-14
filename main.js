@@ -143,6 +143,7 @@ let turnStatus = document.querySelector(".turn-status");
 let winsP1 = document.querySelector("#p1-wins");
 let winsP2 = document.querySelector("#p2-wins");
 
+
 // Player Token Selection
 fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
     .then(response => response.json())
@@ -212,10 +213,14 @@ emojiListP1.addEventListener("click", (event) => {
 
 emojiListP2.addEventListener("click", (event) => {
     let icon = event.target.closest("li");
-    infoSectionP2.classList.remove("hidden");
-    inputSectionP2.classList.add("hidden");
-    playerTokenP2.innerText = icon.innerHTML;
-    createPlayerTwo(icon.innerHTML);
-    renderGame();
+    if(icon.innerHTML === playerOne.token) {
+        alert("You cannot have the same emoji as your opponent! Select a different emoji!");
+    } else {
+        infoSectionP2.classList.remove("hidden");
+        inputSectionP2.classList.add("hidden");
+        playerTokenP2.innerText = icon.innerHTML;
+        createPlayerTwo(icon.innerHTML);
+        renderGame();
+    }
 });
 
