@@ -109,47 +109,97 @@ function resetGame() {
     ];
 }
 
-let playerOne = createPlayer("P1", "⭐️");
-let playerTwo = createPlayer("P2", "🩷");
+// let playerOne = createPlayer("P1", "⭐️");
+// let playerTwo = createPlayer("P2", "🩷");
 
-console.log("Player One:",playerOne);
-console.log("Player Two:",playerTwo);
-console.log("\n");
+// console.log("Player One:",playerOne);
+// console.log("Player Two:",playerTwo);
+// console.log("\n");
 
-playTurn(0, playerOne);
-playTurn(1, playerTwo);
-playTurn(3, playerOne);
-playTurn(6, playerTwo);
-playTurn(4, playerOne);
-playTurn(5, playerTwo);
-playTurn(7, playerOne);
-playTurn(8, playerTwo);
-playTurn(2, playerOne);
+// playTurn(0, playerOne);
+// playTurn(1, playerTwo);
+// playTurn(3, playerOne);
+// playTurn(6, playerTwo);
+// playTurn(4, playerOne);
+// playTurn(5, playerTwo);
+// playTurn(7, playerOne);
+// playTurn(8, playerTwo);
+// playTurn(2, playerOne);
 
 // DOM 
 
-let chooseIconButton = document.querySelector(".emoji-button");
-let emojiSelector = document.querySelector("#p1-emoji-selector");
-let emojiList = document.querySelector(".emoji-list");
 
-chooseIconButton.addEventListener("click", () => {
-    emojiSelector.classList.toggle("hidden");
-});
+// Player Token Selection
+let chooseIconButtonP1 = document.querySelector("#p1-emoji-button");
+let emojiSelectorP1 = document.querySelector("#p1-emoji-selector");
+let chooseIconButtonP2 = document.querySelector("#p2-emoji-button");
+let emojiSelectorP2 = document.querySelector("#p2-emoji-selector");
+let emojiListP1 = document.querySelector("#p1-emoji-list");
+let emojiListP2 = document.querySelector("#p2-emoji-list");
+let emojiSearchP1 = document.querySelector("#p1-emoji-search");
+let emojiSearchP2 = document.querySelector("#p2-emoji-search");
 
+// Player Token Selection
 fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
     .then(response => response.json())
-    .then(data => loadEmoji(data))
-
-function loadEmoji(data) {
+    .then(data => loadEmojisP1(data))
+    
+fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
+    .then(response => response.json())
+    .then(data => loadEmojisP2(data))
+    
+function loadEmojisP1(data) {
     data.forEach(emoji => {
         let listItem = document.createElement("li");
         listItem.setAttribute("emoji-name", emoji.slug);
         listItem.textContent = emoji.character;
-        emojiList.appendChild(listItem);
-    })
+        emojiListP1.appendChild(listItem);
+    });
 }
 
+function loadEmojisP2(data) {
+    data.forEach(emoji => {
+        let listItem = document.createElement("li");
+        listItem.setAttribute("emoji-name", emoji.slug);
+        listItem.textContent = emoji.character;
+        emojiListP2.appendChild(listItem);
+    });
+}
 
+chooseIconButtonP1.addEventListener("click", () => {
+    emojiSelectorP1.classList.toggle("hidden");
+});
+    
+chooseIconButtonP2.addEventListener("click", () => {
+    emojiSelectorP2.classList.toggle("hidden");
+});
 
+emojiSearchP1.addEventListener("keyup", (event) => {
+    let value = event.target.value;
+    let emojis = document.querySelectorAll("#p1-emoji-list li");
+    emojis.forEach(emoji => {
+        if(emoji.getAttribute("emoji-name").toLowerCase().includes(value)) {
+            emoji.style.display = "flex";
+        } else {
+            emoji.style.display = "none";
+        }
+    });
+});
+
+emojiSearchP2.addEventListener("keyup", (event) => {
+    let value = event.target.value;
+    let emojis = document.querySelectorAll("#p2-emoji-list li");
+    emojis.forEach(emoji => {
+        if(emoji.getAttribute("emoji-name").toLowerCase().includes(value)) {
+            emoji.style.display = "flex";
+        } else {
+            emoji.style.display = "none";
+        }
+    })
+});
+
+emojiListP1.addEventListener("click", (event) => {
+
+});
 
 
