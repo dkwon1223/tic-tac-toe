@@ -1,6 +1,8 @@
 // GAME LOGIC
 
 // GLOBAL VARIABLE(S)/DATA MODEL
+let playerOne = null;
+let playerTwo = null;
 let turnCounter = 0;
 
 let gameBoard = [
@@ -28,12 +30,22 @@ A function that creates the objects that store each players’ information
 - properties should include: id (ex: 'one'), token (ex: '⭐️'), wins (ex: 0) 
 */
 
-function createPlayer(id, token) {
-    return {
-        id: id,
+function createPlayerOne(token, id = 1) {
+    playerOne = {
         token: token,
+        id: id,
         wins: 0
     };
+    return playerOne;
+}
+
+function createPlayerTwo(token, id = 2) {
+    playerTwo = {
+        token: token,
+        id: id,
+        wins: 0
+    };
+    return playerTwo;
 }
 
 // A function called increaseWins - increases the count of a player’s wins (should work for either player)
@@ -46,6 +58,9 @@ function increaseWins(player) {
 // A function that keeps track of the data for the game board
 
 function renderGame() {
+    turnStatus.innerText = trackTurn();
+    winsP1.innerHTML = `Wins: ${playerOne.wins}`;
+    winsP2.innerHTML = `Wins: ${playerTwo.wins}`;
 
 }
 
@@ -54,13 +69,6 @@ function playTurn(index, playerObject) {
     if(gameBoard[index] === null) {
         turnCounter++;
         gameBoard[index] = playerObject.token;   
-        console.log("Track Turn:",trackTurn());
-        console.log(gameBoard.slice(0,3));   
-        console.log(gameBoard.slice(3,6));
-        console.log(gameBoard.slice(6));
-        console.log("Check Win:",checkWin());
-        console.log("Check Draw:", checkDraw());
-        console.log("\n");
     } else {
         console.log("Cannot play here");
     }
@@ -69,9 +77,9 @@ function playTurn(index, playerObject) {
 // A function that keeps track of which player’s turn it currently is
 function trackTurn() {  
     if(turnCounter === 0 || turnCounter % 2 === 0) {
-        return "Player 1's Turn";
+        return `Player 1's Turn: ${playerOne.token}`;
     } else {
-        return "Player 2's Turn";
+        return `Player 2's Turn: ${playerTwo.token}`;
     }
 }
 
@@ -109,35 +117,31 @@ function resetGame() {
     ];
 }
 
-// let playerOne = createPlayer("P1", "⭐️");
-// let playerTwo = createPlayer("P2", "🩷");
-
-// console.log("Player One:",playerOne);
-// console.log("Player Two:",playerTwo);
-// console.log("\n");
-
-// playTurn(0, playerOne);
-// playTurn(1, playerTwo);
-// playTurn(3, playerOne);
-// playTurn(6, playerTwo);
-// playTurn(4, playerOne);
-// playTurn(5, playerTwo);
-// playTurn(7, playerOne);
-// playTurn(8, playerTwo);
-// playTurn(2, playerOne);
-
 // DOM 
 
 
 // Player Token Selection
 let chooseIconButtonP1 = document.querySelector("#p1-emoji-button");
 let emojiSelectorP1 = document.querySelector("#p1-emoji-selector");
+let emojiListP1 = document.querySelector("#p1-emoji-list");
+let emojiSearchP1 = document.querySelector("#p1-emoji-search");
 let chooseIconButtonP2 = document.querySelector("#p2-emoji-button");
 let emojiSelectorP2 = document.querySelector("#p2-emoji-selector");
-let emojiListP1 = document.querySelector("#p1-emoji-list");
 let emojiListP2 = document.querySelector("#p2-emoji-list");
-let emojiSearchP1 = document.querySelector("#p1-emoji-search");
 let emojiSearchP2 = document.querySelector("#p2-emoji-search");
+
+// Player Info Section
+let infoSectionP1 = document.querySelector("#p1-player-info");
+let inputSectionP1 = document.querySelector("#p1-player-input");
+let playerTokenP1 = document.querySelector("#p1-player-token");
+let infoSectionP2 = document.querySelector("#p2-player-info");
+let inputSectionP2 = document.querySelector("#p2-player-input");
+let playerTokenP2 = document.querySelector("#p2-player-token");
+
+// Rendering Game
+let turnStatus = document.querySelector(".turn-status");
+let winsP1 = document.querySelector("#p1-wins");
+let winsP2 = document.querySelector("#p2-wins");
 
 // Player Token Selection
 fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
@@ -199,7 +203,19 @@ emojiSearchP2.addEventListener("keyup", (event) => {
 });
 
 emojiListP1.addEventListener("click", (event) => {
-
+    let icon = event.target.closest("li");
+    infoSectionP1.classList.remove("hidden");
+    inputSectionP1.classList.add("hidden");
+    playerTokenP1.innerText = icon.innerHTML;
+    createPlayerOne(icon.innerHTML);
 });
 
+emojiListP2.addEventListener("click", (event) => {
+    let icon = event.target.closest("li");
+    infoSectionP2.classList.remove("hidden");
+    inputSectionP2.classList.add("hidden");
+    playerTokenP2.innerText = icon.innerHTML;
+    createPlayerTwo(icon.innerHTML);
+    renderGame();
+});
 
