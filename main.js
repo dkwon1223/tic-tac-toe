@@ -76,7 +76,7 @@ function renderGame() {
     winsP2.innerHTML = `Wins: ${playerTwo.wins}`;
 
     for(let i = 0; i < gameBoard.length; i++) {
-        gameBoardDOM.children[i].innerText = gameBoard[i];
+        gameBoardDOM.children[i].innerHTML = gameBoard[i];
     }
 }
 
@@ -84,6 +84,7 @@ function startGame() {
     for(let i = 0; i < gameBoard.length; i++) {
         let cell = document.createElement('div');
         cell.setAttribute('id', i);
+        cell.setAttribute('class', "cell");
         cell.innerText = gameBoard[i];
         gameBoardDOM.appendChild(cell);
     }
