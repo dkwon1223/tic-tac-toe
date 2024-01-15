@@ -2,7 +2,7 @@
 
 ## Abstract
 
-- This is a 2 player tic tac toe game built with HTML, CSS, and JavaScript. The game is intended to play on one machine with 2 users/players. 
+- This is a tic tac toe game built with HTML, CSS, and JavaScript. The game is intended to play on one machine with 2 users/players. 
 
 ## Installation Instructions
 
