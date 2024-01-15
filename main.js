@@ -58,10 +58,35 @@ function increaseWins(player) {
 // A function that keeps track of the data for the game board
 
 function renderGame() {
-    turnStatus.innerText = trackTurn();
+    if(!checkWin() && !checkDraw()) {
+        turnStatus.innerText = trackTurn();
+    } else {
+        if(checkWin().includes("1")) {
+            increaseWins(playerOne);
+            turnStatus.innerText = checkWin();
+        } else if(checkWin().includes("2")) {
+            increaseWins(playerTwo);
+            turnStatus.innerText = checkWin();
+        } else if(checkDraw()) {
+            turnStatus.innerText = checkDraw();
+        }
+    }
+
     winsP1.innerHTML = `Wins: ${playerOne.wins}`;
     winsP2.innerHTML = `Wins: ${playerTwo.wins}`;
 
+    for(let i = 0; i < gameBoard.length; i++) {
+        gameBoardDOM.children[i].innerText = gameBoard[i];
+    }
+}
+
+function startGame() {
+    for(let i = 0; i < gameBoard.length; i++) {
+        let cell = document.createElement('div');
+        cell.setAttribute('id', i);
+        cell.innerText = gameBoard[i];
+        gameBoardDOM.appendChild(cell);
+    }
 }
 
 // A function for playing a turn
@@ -76,31 +101,46 @@ function playTurn(index, playerObject) {
 
 // A function that keeps track of which player’s turn it currently is
 function trackTurn() {  
+    let statusMessage = "";
     if(turnCounter === 0 || turnCounter % 2 === 0) {
-        return `Player 1's Turn: ${playerOne.token}`;
+        statusMessage = `Player 1's Turn: ${playerOne.token}`;
     } else {
-        return `Player 2's Turn: ${playerTwo.token}`;
+        statusMessage = `Player 2's Turn: ${playerTwo.token}`;
     }
+    if(checkWin )
+    return statusMessage;
 }
 
 // A function that checks the game board data for win conditions
 
 function checkWin() {
+    let winningMessage = "";
     for(const condition of winCombos) {
         let [x, y, z] = condition
         if(gameBoard[x] && (gameBoard[x] === gameBoard[y] && gameBoard[x] === gameBoard[z])) {
-            resetGame();
-            return [x, y, z];
+            if(gameBoard[x] === playerOne.token) {
+                gameBoardDOM.children[x].style.backgroundColor = "grey";
+                gameBoardDOM.children[y].style.backgroundColor = "grey";
+                gameBoardDOM.children[z].style.backgroundColor = "grey";
+                winningMessage = `Player 1 Wins: ${playerOne.token}`;
+                setTimeout(() => { resetGame(); }, 3000);
+            } else {
+                gameBoardDOM.children[x].style.backgroundColor = "grey";
+                gameBoardDOM.children[y].style.backgroundColor = "grey";
+                gameBoardDOM.children[z].style.backgroundColor = "grey";
+                winningMessage = `Player 2 Wins: ${playerTwo.token}`;
+                setTimeout(() => { resetGame(); }, 3000);
+            }
         }
     }
-    return false;
+    return winningMessage;
 }
 
 // A function that detects when a game is a draw (no one has won)
 
 function checkDraw() {
     if(!gameBoard.includes(null) && !checkWin()) {
-        resetGame();
+        setTimeout(() => { resetGame(); }, 3000);
         return "Draw";
     } else {
         return false;
@@ -115,6 +155,11 @@ function resetGame() {
         null, null, null,
         null, null, null
     ];
+    for(let i = 0; i < gameBoardDOM.children.length; i++) {
+        gameBoardDOM.children[i].style.backgroundColor = "white";
+    }
+    turnCounter = 0;
+    renderGame();
 }
 
 // DOM 
@@ -142,6 +187,9 @@ let playerTokenP2 = document.querySelector("#p2-player-token");
 let turnStatus = document.querySelector(".turn-status");
 let winsP1 = document.querySelector("#p1-wins");
 let winsP2 = document.querySelector("#p2-wins");
+
+// Game Board
+let gameBoardDOM = document.querySelector(".game-board");
 
 
 // Player Token Selection
@@ -206,6 +254,7 @@ emojiSearchP2.addEventListener("keyup", (event) => {
 emojiListP1.addEventListener("click", (event) => {
     let icon = event.target.closest("li");
     infoSectionP1.classList.remove("hidden");
+    inputSectionP2.classList.remove("hidden");
     inputSectionP1.classList.add("hidden");
     playerTokenP1.innerText = icon.innerHTML;
     createPlayerOne(icon.innerHTML);
@@ -220,7 +269,24 @@ emojiListP2.addEventListener("click", (event) => {
         inputSectionP2.classList.add("hidden");
         playerTokenP2.innerText = icon.innerHTML;
         createPlayerTwo(icon.innerHTML);
+        startGame();
         renderGame();
     }
 });
+
+gameBoardDOM.addEventListener("click", (event) => {
+    if(playerTokenP1.innerHTML === "" || playerTokenP2.innerHTML === "") {
+        alert("You cannot play yet... select icons");
+    } else if (turnStatus.innerText.includes("Wins") || turnStatus.innerText.includes("Draw")) {
+        alert("Wait for game to reset...");
+    } else {
+        if(trackTurn().includes("Player 1")) {
+            playTurn((event.target.closest("div").id), playerOne);
+            renderGame();
+        } else if(trackTurn().includes("Player 2")) {
+            playTurn((event.target.closest("div").id), playerTwo);
+            renderGame();
+        }
+    }
+})
 
