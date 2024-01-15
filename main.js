@@ -22,13 +22,7 @@ const winCombos = [
     [2, 4, 6]
 ];
 
-
-// FUNCTIONS
-
-/* 
-A function that creates the objects that store each players’ information
-- properties should include: id (ex: 'one'), token (ex: '⭐️'), wins (ex: 0) 
-*/
+// GAME LOGIC METHODS
 
 function createPlayerOne(token, id = 1) {
     playerOne = {
@@ -48,14 +42,10 @@ function createPlayerTwo(token, id = 2) {
     return playerTwo;
 }
 
-// A function called increaseWins - increases the count of a player’s wins (should work for either player)
-
 function increaseWins(player) {
     player.wins += 1;
     return player;
 }
-
-// A function that keeps track of the data for the game board
 
 function renderGame() {
     if(!checkWin() && !checkDraw()) {
@@ -90,7 +80,6 @@ function startGame() {
     }
 }
 
-// A function for playing a turn
 function playTurn(index, playerObject) {
     if(gameBoard[index] === null) {
         turnCounter++;
@@ -100,7 +89,6 @@ function playTurn(index, playerObject) {
     }
 }
 
-// A function that keeps track of which player’s turn it currently is
 function trackTurn() {  
     let statusMessage = "";
     if(turnCounter === 0 || turnCounter % 2 === 0) {
@@ -111,12 +99,10 @@ function trackTurn() {
     return statusMessage;
 }
 
-// A function that checks the game board data for win conditions
-
 function checkWin() {
     let winningMessage = "";
     for(const condition of winCombos) {
-        let [x, y, z] = condition
+        let [x, y, z] = condition;
         if(gameBoard[x] && (gameBoard[x] === gameBoard[y] && gameBoard[x] === gameBoard[z])) {
             if(gameBoard[x] === playerOne.token) {
                 gameBoardDOM.children[x].style.backgroundColor = "#343F71";
@@ -136,8 +122,6 @@ function checkWin() {
     return winningMessage;
 }
 
-// A function that detects when a game is a draw (no one has won)
-
 function checkDraw() {
     if(!gameBoard.includes(null) && !checkWin()) {
         setTimeout(() => { resetGame(); }, 3000);
@@ -146,8 +130,6 @@ function checkDraw() {
         return false;
     }
 }
-
-// A function that resets the game board’s data to begin a new game
 
 function resetGame() {
     gameBoard = [
@@ -161,14 +143,14 @@ function resetGame() {
     renderGame();
 }
 
-// DOM 
-
+// DOM RELATED JS
 
 // Player Token Selection Query Selectors
 let chooseIconButtonP1 = document.querySelector("#p1EmojiButton");
 let emojiSelectorP1 = document.querySelector("#p1EmojiSelector");
 let emojiListP1 = document.querySelector("#p1EmojiList");
 let emojiSearchP1 = document.querySelector("#p1EmojiSearch");
+
 let chooseIconButtonP2 = document.querySelector("#p2EmojiButton");
 let emojiSelectorP2 = document.querySelector("#p2EmojiSelector");
 let emojiListP2 = document.querySelector("#p2EmojiList");
@@ -178,18 +160,18 @@ let emojiSearchP2 = document.querySelector("#p2EmojiSearch");
 let infoSectionP1 = document.querySelector("#p1PlayerInfo");
 let inputSectionP1 = document.querySelector("#p1PlayerInput");
 let playerTokenP1 = document.querySelector("#p1PlayerToken");
+
 let infoSectionP2 = document.querySelector("#p2PlayerInfo");
 let inputSectionP2 = document.querySelector("#p2PlayerInput");
 let playerTokenP2 = document.querySelector("#p2PlayerToken");
 
-// Rendering Game Query Selectors
+// Render Game Query Selectors
 let turnStatus = document.querySelector(".turn-status");
 let winsP1 = document.querySelector("#p1Wins");
 let winsP2 = document.querySelector("#p2Wins");
 
 // Game Board Query Selectors
 let gameBoardDOM = document.querySelector(".game-board");
-
 
 // Player Token Selection
 fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
