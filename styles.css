@@ -1,5 +1,11 @@
-section, figure, h2, h1, .game-board, div{
-    border: solid 1px black;
+/* 
+Supernova: #FBC40E
+Rhino: #343F71
+Twilight: #E9D8E4
+*/
+
+html {
+    font-family: 'Offside', sans-serif;
 }
 
 .main {
@@ -11,13 +17,13 @@ section, figure, h2, h1, .game-board, div{
 
 .player-area {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 20%;
     height: 100%;
+    background-color: #343F71;
 }
-
+/* GAME AREA */
 .game-area {
     display: flex;
     flex-direction: column;
@@ -25,37 +31,147 @@ section, figure, h2, h1, .game-board, div{
     align-items: center;
     width: 60%;
     height: 100%;
-}
-
-.player-icon {
-    width: 40%;
-    height: 12%;
-}
-
-.player-token {
-    width: 100%;
-    height: 100%;
-}
-
-.player-wins {
-    width: 60%;
-    height: 10%;
-}
-
-.turn-status {
-    height: 10%;
-    width: 60%;
+    background-color: #7D94B5;
 }
 
 .game-board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 60%;
+    height: 65%;
     width: 70%;
+}
+
+.game-board div:nth-child(-n+6) {
+    border-bottom: solid 4px #FBC40E; 
+}
+
+.game-board div:nth-child(3n+1) {
+    border-right: solid 4px #FBC40E; 
+}
+
+.game-board div:nth-child(3n+2) {
+    border-right: solid 4px #FBC40E; 
+}
+
+.player-info {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-input {
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    height: 80%;
+    width: 80%;
+    font-size: xx-large;
+}
+
+.player-input-header {
+    margin-bottom: 1%;
+    margin-top: 10%;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 15%;
+}
+
+input {
+    height: 80%;
+    width: 80%;
+    border-radius: 1rem;
+    font-size: xx-large;
+    font-family: 'Offside', sans-serif;
+}
+
+.emoji-button {
+    width: 30%;
+    height: 12%;
+    background-image: url("assets/emoji-icon.png");
+    background-size: contain;
+    background-color: #FBC40E;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer
+}
+
+.emoji-selector {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+}
+
+.emoji-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 70%;
+    list-style: none;
+    overflow: auto;
+    padding: 0;
+    background-color: #E9D8E4;
+    border-radius: 2rem;
+}
+
+li {
+    cursor: pointer;
+}
+
+.player-icon {
+    width: 40%;
+    height: 12%;
+    border-radius: 1rem;
+}
+
+.player-token {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xxx-large;
+}
+
+.player-wins {
+    width: 60%;
+    height: 10%;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.turn-status {
+    height: 10%;
+    width: 60%;
+    text-align: center;
+    font-size: xx-large;
 }
 
 .hidden {
     display: none;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: xxx-large;
+    height: 100%;
 }
 
 
