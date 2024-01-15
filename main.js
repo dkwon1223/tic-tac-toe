@@ -96,7 +96,7 @@ function playTurn(index, playerObject) {
         turnCounter++;
         gameBoard[index] = playerObject.token;   
     } else {
-        console.log("Cannot play here");
+        alert("Cannot play here!");
     }
 }
 
@@ -108,7 +108,6 @@ function trackTurn() {
     } else {
         statusMessage = `Player 2's Turn: ${playerTwo.token}`;
     }
-    if(checkWin )
     return statusMessage;
 }
 
@@ -159,14 +158,13 @@ function resetGame() {
     for(let i = 0; i < gameBoardDOM.children.length; i++) {
         gameBoardDOM.children[i].style.backgroundColor = "#7D94B5";
     }
-    turnCounter = 0;
     renderGame();
 }
 
 // DOM 
 
 
-// Player Token Selection
+// Player Token Selection Query Selectors
 let chooseIconButtonP1 = document.querySelector("#p1-emoji-button");
 let emojiSelectorP1 = document.querySelector("#p1-emoji-selector");
 let emojiListP1 = document.querySelector("#p1-emoji-list");
@@ -176,7 +174,7 @@ let emojiSelectorP2 = document.querySelector("#p2-emoji-selector");
 let emojiListP2 = document.querySelector("#p2-emoji-list");
 let emojiSearchP2 = document.querySelector("#p2-emoji-search");
 
-// Player Info Section
+// Player Info Section Query Selectors
 let infoSectionP1 = document.querySelector("#p1-player-info");
 let inputSectionP1 = document.querySelector("#p1-player-input");
 let playerTokenP1 = document.querySelector("#p1-player-token");
@@ -184,12 +182,12 @@ let infoSectionP2 = document.querySelector("#p2-player-info");
 let inputSectionP2 = document.querySelector("#p2-player-input");
 let playerTokenP2 = document.querySelector("#p2-player-token");
 
-// Rendering Game
+// Rendering Game Query Selectors
 let turnStatus = document.querySelector(".turn-status");
 let winsP1 = document.querySelector("#p1-wins");
 let winsP2 = document.querySelector("#p2-wins");
 
-// Game Board
+// Game Board Query Selectors
 let gameBoardDOM = document.querySelector(".game-board");
 
 
@@ -219,6 +217,8 @@ function loadEmojisP2(data) {
         emojiListP2.appendChild(listItem);
     });
 }
+
+// Player Icon Selection Event Listeners
 
 chooseIconButtonP1.addEventListener("click", () => {
     emojiSelectorP1.classList.toggle("hidden");
@@ -274,6 +274,8 @@ emojiListP2.addEventListener("click", (event) => {
         renderGame();
     }
 });
+
+// Game Board Event Listeners
 
 gameBoardDOM.addEventListener("click", (event) => {
     if(playerTokenP1.innerHTML === "" || playerTokenP2.innerHTML === "") {
