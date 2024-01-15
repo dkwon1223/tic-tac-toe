@@ -165,27 +165,27 @@ function resetGame() {
 
 
 // Player Token Selection Query Selectors
-let chooseIconButtonP1 = document.querySelector("#p1-emoji-button");
-let emojiSelectorP1 = document.querySelector("#p1-emoji-selector");
-let emojiListP1 = document.querySelector("#p1-emoji-list");
-let emojiSearchP1 = document.querySelector("#p1-emoji-search");
-let chooseIconButtonP2 = document.querySelector("#p2-emoji-button");
-let emojiSelectorP2 = document.querySelector("#p2-emoji-selector");
-let emojiListP2 = document.querySelector("#p2-emoji-list");
-let emojiSearchP2 = document.querySelector("#p2-emoji-search");
+let chooseIconButtonP1 = document.querySelector("#p1EmojiButton");
+let emojiSelectorP1 = document.querySelector("#p1EmojiSelector");
+let emojiListP1 = document.querySelector("#p1EmojiList");
+let emojiSearchP1 = document.querySelector("#p1EmojiSearch");
+let chooseIconButtonP2 = document.querySelector("#p2EmojiButton");
+let emojiSelectorP2 = document.querySelector("#p2EmojiSelector");
+let emojiListP2 = document.querySelector("#p2EmojiList");
+let emojiSearchP2 = document.querySelector("#p2EmojiSearch");
 
 // Player Info Section Query Selectors
-let infoSectionP1 = document.querySelector("#p1-player-info");
-let inputSectionP1 = document.querySelector("#p1-player-input");
-let playerTokenP1 = document.querySelector("#p1-player-token");
-let infoSectionP2 = document.querySelector("#p2-player-info");
-let inputSectionP2 = document.querySelector("#p2-player-input");
-let playerTokenP2 = document.querySelector("#p2-player-token");
+let infoSectionP1 = document.querySelector("#p1PlayerInfo");
+let inputSectionP1 = document.querySelector("#p1PlayerInput");
+let playerTokenP1 = document.querySelector("#p1PlayerToken");
+let infoSectionP2 = document.querySelector("#p2PlayerInfo");
+let inputSectionP2 = document.querySelector("#p2PlayerInput");
+let playerTokenP2 = document.querySelector("#p2PlayerToken");
 
 // Rendering Game Query Selectors
 let turnStatus = document.querySelector(".turn-status");
-let winsP1 = document.querySelector("#p1-wins");
-let winsP2 = document.querySelector("#p2-wins");
+let winsP1 = document.querySelector("#p1Wins");
+let winsP2 = document.querySelector("#p2Wins");
 
 // Game Board Query Selectors
 let gameBoardDOM = document.querySelector(".game-board");
@@ -230,7 +230,7 @@ chooseIconButtonP2.addEventListener("click", () => {
 
 emojiSearchP1.addEventListener("keyup", (event) => {
     let value = event.target.value;
-    let emojis = document.querySelectorAll("#p1-emoji-list li");
+    let emojis = document.querySelectorAll("#p1EmojiList li");
     emojis.forEach(emoji => {
         if(emoji.getAttribute("emoji-name").toLowerCase().includes(value)) {
             emoji.style.display = "flex";
@@ -242,7 +242,7 @@ emojiSearchP1.addEventListener("keyup", (event) => {
 
 emojiSearchP2.addEventListener("keyup", (event) => {
     let value = event.target.value;
-    let emojis = document.querySelectorAll("#p2-emoji-list li");
+    let emojis = document.querySelectorAll("#p2EmojiList li");
     emojis.forEach(emoji => {
         if(emoji.getAttribute("emoji-name").toLowerCase().includes(value)) {
             emoji.style.display = "flex";
