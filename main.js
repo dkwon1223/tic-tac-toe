@@ -119,15 +119,15 @@ function checkWin() {
         let [x, y, z] = condition
         if(gameBoard[x] && (gameBoard[x] === gameBoard[y] && gameBoard[x] === gameBoard[z])) {
             if(gameBoard[x] === playerOne.token) {
-                gameBoardDOM.children[x].style.backgroundColor = "grey";
-                gameBoardDOM.children[y].style.backgroundColor = "grey";
-                gameBoardDOM.children[z].style.backgroundColor = "grey";
+                gameBoardDOM.children[x].style.backgroundColor = "#343F71";
+                gameBoardDOM.children[y].style.backgroundColor = "#343F71";
+                gameBoardDOM.children[z].style.backgroundColor = "#343F71";
                 winningMessage = `Player 1 Wins: ${playerOne.token}`;
                 setTimeout(() => { resetGame(); }, 3000);
             } else {
-                gameBoardDOM.children[x].style.backgroundColor = "grey";
-                gameBoardDOM.children[y].style.backgroundColor = "grey";
-                gameBoardDOM.children[z].style.backgroundColor = "grey";
+                gameBoardDOM.children[x].style.backgroundColor = "#343F71";
+                gameBoardDOM.children[y].style.backgroundColor = "#343F71";
+                gameBoardDOM.children[z].style.backgroundColor = "#343F71";
                 winningMessage = `Player 2 Wins: ${playerTwo.token}`;
                 setTimeout(() => { resetGame(); }, 3000);
             }
@@ -156,7 +156,7 @@ function resetGame() {
         null, null, null
     ];
     for(let i = 0; i < gameBoardDOM.children.length; i++) {
-        gameBoardDOM.children[i].style.backgroundColor = "white";
+        gameBoardDOM.children[i].style.backgroundColor = "#7D94B5";
     }
     turnCounter = 0;
     renderGame();
