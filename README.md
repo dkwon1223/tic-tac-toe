@@ -43,7 +43,7 @@ DRY JavaScript
 
 - Wins:
   - Stayed patient despite wanting to look up answers
-  - Resorted to many failed approaches and research to ultimately come to a solution that worked throughout many iterations
+  - Resorted to many failed approaches and researched heavily to ultimately come to a solution that worked throughout many iterations
   - Gained new confidence in approaching new unfamiliar concepts with the combination of asking for help, identifying essential resources, researching on MDN docs, and carefully, precisely crafted Google searches(which mostly lead to Stack Overflow and was extremely helpful/a good learning experience)
   - Stayed mindful of atomic commits and using branches to log and snapshot my progress
 - Challenges:
