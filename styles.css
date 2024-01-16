@@ -25,6 +25,7 @@ html {
 .emoji-list,
 .emoji-selector,
 .player-token,
+.load-game,
 div {
     display: flex;
     justify-content: center;
@@ -34,6 +35,7 @@ div {
 .game-area,
 .player-info,
 .player-input,
+.load-game,
 .emoji-selector {
     flex-direction: column;
 }
@@ -54,6 +56,9 @@ div {
 
 .cell,
 .emoji-button,
+.player-options,
+#deleteSavedGame,
+#savedGame,
 li {
     cursor: pointer;
 }
@@ -61,6 +66,7 @@ li {
 .turn-status,
 .player-input,
 .player-wins,
+.load-game,
 input {
     font-size: xx-large;
 }
@@ -78,8 +84,20 @@ input {
 .player-icon,
 .emoji-list,
 .emoji-button,
+.player-options,
+#savedGame,
+#deleteSavedGame,
 input {
     border-radius: 1rem;
+}
+
+.emoji-button,
+.player-options {
+    background-color: #FBC40E;
+    border: none;
+    margin-top: 3%;
+    font-family: 'Offside', sans-serif; 
+    font-size: large;
 }
 
 /* GAME AREA */
@@ -119,6 +137,25 @@ input {
     line-height: 1rem;
 } 
 
+.load-game {
+    height: 50%;
+    z-index: 1;
+    position: absolute;
+}
+
+#savedGame {
+    border: 1px solid black;
+    font-size: small;
+    height: 30%;
+    background-color: #FBC40E;
+}
+
+#deleteSavedGame {
+    background-color: red;
+    height: 30%;
+    width: 8%;
+}
+
 /* PLAYER AREAS */
 
 .player-area {
@@ -148,12 +185,10 @@ input {
 }
 
 .emoji-button {
-    width: 30%;
-    height: 12%;
     background-image: url("assets/emoji-icon.png");
     background-size: contain;
-    background-color: #FBC40E;
-    border: none;
+    width: 30%;
+    height: 12%;
 }
 
 .emoji-selector {

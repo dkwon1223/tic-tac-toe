@@ -64,6 +64,7 @@ function renderGame() {
 
     winsP1.innerHTML = `Wins: ${playerOne.wins}`;
     winsP2.innerHTML = `Wins: ${playerTwo.wins}`;
+    loadGame.classList.add("hidden");
 
     for(let i = 0; i < gameBoard.length; i++) {
         gameBoardDOM.children[i].innerHTML = gameBoard[i];
@@ -77,6 +78,9 @@ function startGame() {
         cell.setAttribute('class', "cell");
         cell.innerText = gameBoard[i];
         gameBoardDOM.appendChild(cell);
+        saveButton.classList.remove("hidden");
+        quitButton.classList.remove("hidden");
+        loadGame.classList.add("hidden");
     }
 }
 
@@ -172,6 +176,10 @@ let winsP2 = document.querySelector("#p2Wins");
 
 // Game Board Query Selectors
 let gameBoardDOM = document.querySelector(".game-board");
+let loadGame = document.querySelector(".load-game");
+let savedGame = document.querySelector("#savedGame");
+let saveButton = document.querySelector("#saveButton");
+let quitButton = document.querySelector("#quitButton");
 
 // Player Token Selection
 fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
@@ -272,6 +280,87 @@ gameBoardDOM.addEventListener("click", (event) => {
             playTurn((event.target.closest("div").id), playerTwo);
             renderGame();
         }
+    }
+})
+
+// Extension Event Listeners
+
+quitButton.addEventListener("click", () => {
+    location.reload();
+})
+
+saveButton.addEventListener("click", () => {
+    if(JSON.stringify(localStorage).includes("game")) {
+        let verifyOverwrite = prompt("This will overwrite your previous saved game. Type Y to continue or N to cancel.");
+        if(verifyOverwrite === "Y") {
+            let gameState = {
+                p1: playerOne,
+                p2: playerTwo,
+                turnCount: turnCounter,
+                game: gameBoard, 
+                date: Date.now()
+            }
+        
+            let gameStateSerialized = JSON.stringify(gameState);
+            localStorage.setItem("gameState", gameStateSerialized);
+            let gameStateDeserialized = JSON.parse(localStorage.getItem("gameState"));
+            return gameStateDeserialized;
+        } else if(verifyOverwrite === "N") {
+            return;
+        } else {
+            alert("Invalid response!");
+        }
+    } else {
+        let gameState = {
+            p1: playerOne,
+            p2: playerTwo,
+            turnCount: turnCounter,
+            game: gameBoard, 
+            date: Date.now()
+        }
+    
+        let gameStateSerialized = JSON.stringify(gameState);
+        localStorage.setItem("gameState", gameStateSerialized);
+        let gameStateDeserialized = JSON.parse(localStorage.getItem("gameState"));
+        return gameStateDeserialized;
+    }
+})
+
+addEventListener("load", () => {
+    if(JSON.stringify(localStorage).includes("game")) {
+        loadGame.classList.remove("hidden");
+        let game = document.createElement("div");
+        game.setAttribute("id", "savedGame");
+        game.innerHTML = `Saved Game: ${Date(JSON.parse(localStorage.gameState).date)} <button id="deleteSavedGame">X</button>`;
+        loadGame.appendChild(game);
+    } else {
+        loadGame.classList.add("hidden");
+    }
+})
+
+loadGame.addEventListener("click", (event) => {
+    if(event.target.id === "savedGame") {
+        startGame();
+        gameBoard = JSON.parse(localStorage.gameState).game;
+        turnCounter = JSON.parse(localStorage.gameState).turnCount;
+        playerOne = JSON.parse(localStorage.gameState).p1;
+        playerTwo = JSON.parse(localStorage.gameState).p2;
+        playerTokenP1.innerText = playerOne.token;
+        playerTokenP2.innerText = playerTwo.token;
+            
+        inputSectionP1.classList.add("hidden");
+        inputSectionP2.classList.add("hidden");
+
+        infoSectionP1.classList.remove("hidden");
+        infoSectionP2.classList.remove("hidden");
+        renderGame(); 
+    }
+})
+
+loadGame.addEventListener("click", (event) => {
+    if(event.target.id === "deleteSavedGame") {
+        localStorage.removeItem("gameState");
+        location.reload();
     }
 })
 
