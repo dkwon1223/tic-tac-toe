@@ -12,14 +12,19 @@
 4.  View the project in browser by running `open index.html` in your terminal
 
 ## Preview Of App
-- Application begins with prompt for Player 1 to select an emoji token
-<img width="1437" alt="player one emoji selection" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/ba164641-33fa-439b-a432-049b1932d6f1">
+### Application begins with prompt for Player 1 to select an emoji token
+<img width="1432" alt="Screenshot 2024-01-16 at 2 21 44 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/5baa68f1-dbb2-4f65-981d-2a39765a10a8">
 
-- Once Player 1 selects an emoji token, another prompt appears for Player 2 to select an emoji token
-<img width="1439" alt="player two emoji selection" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/8f20a29b-fa7c-45ae-b00c-1b0c59c31b05">
+### Once Player 1 selects an emoji token, another prompt appears for Player 2 to select an emoji token
+<img width="1428" alt="Screenshot 2024-01-16 at 2 22 05 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/402b816a-6a83-426d-9724-7b24bade9bad">
 
-- Once both players have selected an emoji token, the game board appears and players can play by clicking to place their tokens on their turn
-<img width="1438" alt="game in progress" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/45766e48-442b-4984-b444-9fdb447bf356">
+### Once both players have selected an emoji token, the game board appears and players can play by clicking to place their tokens on their turn
+### Turn status/Win status/Draw status is displayed in the text banner above the game board
+### Players are able save or quit the game using the buttons below the tic tac toe board
+<img width="1421" alt="Screenshot 2024-01-16 at 2 22 49 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/0ec18ef9-6768-42e9-aa4d-f08dfc9fe4ae">
+
+### If players save a game, it is held in local storage and can be loaded up again from the home screen
+<img width="1429" alt="Screenshot 2024-01-16 at 2 23 48 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/70510aa7-4744-4161-b336-b63804cfc8d0">
 
 ## Context
 - This was a final project for Turing Mod 1
