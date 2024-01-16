@@ -77,6 +77,8 @@ function startGame() {
         cell.setAttribute('class', "cell");
         cell.innerText = gameBoard[i];
         gameBoardDOM.appendChild(cell);
+        saveButton.classList.remove("hidden");
+        quitButton.classList.remove("hidden");
     }
 }
 
@@ -172,6 +174,8 @@ let winsP2 = document.querySelector("#p2Wins");
 
 // Game Board Query Selectors
 let gameBoardDOM = document.querySelector(".game-board");
+let saveButton = document.querySelector("#saveButton");
+let quitButton = document.querySelector("#quitButton");
 
 // Player Token Selection
 fetch("https://emoji-api.com/emojis?access_key=6a71a08e92cb8d400ad842d478278d769bc4aec4")
