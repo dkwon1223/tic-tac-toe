@@ -279,7 +279,23 @@ gameBoardDOM.addEventListener("click", (event) => {
     }
 })
 
-quitButton.addEventListener("click", (event) => {
+quitButton.addEventListener("click", () => {
     location.reload();
+})
+
+saveButton.addEventListener("click", () => {
+    let gameState = {
+        p1: playerOne,
+        p2: playerTwo,
+        turnCount: turnCounter,
+        game: gameBoard, 
+        date: Date.now()
+    }
+
+    let gameStateSerialized = JSON.stringify(gameState);
+    localStorage.setItem("gameState", gameStateSerialized);
+    let gameStateDeserialized = JSON.parse(localStorage.getItem("gameState"));
+    console.log(gameStateDeserialized);
+    return gameStateDeserialized
 })
 
