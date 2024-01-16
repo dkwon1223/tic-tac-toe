@@ -279,3 +279,7 @@ gameBoardDOM.addEventListener("click", (event) => {
     }
 })
 
+quitButton.addEventListener("click", (event) => {
+    location.reload();
+})
+
