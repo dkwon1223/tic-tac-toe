@@ -12,13 +12,13 @@
 4.  View the project in browser by running `open index.html` in your terminal
 
 ## Preview Of App
-### Application begins with prompt for Player 1 to select an emoji token
+### Application begins with prompt for Player 1 to select an emoji icon
 <img width="1432" alt="Screenshot 2024-01-16 at 2 21 44 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/5baa68f1-dbb2-4f65-981d-2a39765a10a8">
 
-### Once Player 1 selects an emoji token, another prompt appears for Player 2 to select an emoji token
+### Once Player 1 selects an emoji token, another prompt appears for Player 2 to select an emoji icon
 <img width="1428" alt="Screenshot 2024-01-16 at 2 22 05 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/402b816a-6a83-426d-9724-7b24bade9bad">
 
-### Once both players have selected an emoji token, the game board appears and players can play by clicking to place their tokens on their turn
+### Once both players have selected an emoji icon, the game board appears and players can participate by clicking on cells of the board to place their icons on their specified turn
 ### Turn status/Win status/Draw status is displayed in the text banner above the game board
 ### Players are able save or quit the game using the buttons below the tic tac toe board
 <img width="1421" alt="Screenshot 2024-01-16 at 2 22 49 AM" src="https://github.com/dkwon1223/tic-tac-toe/assets/112133897/0ec18ef9-6768-42e9-aa4d-f08dfc9fe4ae">
