@@ -54,6 +54,7 @@ div {
 
 .cell,
 .emoji-button,
+.player-options,
 li {
     cursor: pointer;
 }
@@ -78,8 +79,18 @@ input {
 .player-icon,
 .emoji-list,
 .emoji-button,
+.player-options,
 input {
     border-radius: 1rem;
+}
+
+.emoji-button,
+.player-options {
+    background-color: #FBC40E;
+    border: none;
+    margin-top: 3%;
+    font-family: 'Offside', sans-serif; 
+    font-size: large;
 }
 
 /* GAME AREA */
@@ -148,12 +159,10 @@ input {
 }
 
 .emoji-button {
-    width: 30%;
-    height: 12%;
     background-image: url("assets/emoji-icon.png");
     background-size: contain;
-    background-color: #FBC40E;
-    border: none;
+    width: 30%;
+    height: 12%;
 }
 
 .emoji-selector {
